@@ -4,7 +4,10 @@ import Trains from "../src/components/Trains/Trains";
 function App() {
   return (
     <>
-      <h1>Trains</h1>
+      <h2>
+        Finde Bahnhöfe <br />
+        und Anschlusszüge
+      </h2>
       <Trains />
     </>
   );
