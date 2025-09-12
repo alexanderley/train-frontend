@@ -1,0 +1,47 @@
+.trainTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+
+  thead {
+    background-color: #dc3545; // red header
+    color: #fff;
+    text-align: left;
+
+    th {
+      padding: 12px 16px;
+      font-weight: 600;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #dee2e6;
+
+      &:nth-child(even) {
+        background-color: #f1f3f5; // zebra striping
+      }
+
+      &:hover {
+        background-color: #e9ecef;
+      }
+
+      td {
+        padding: 10px 16px;
+        text-align: left;
+      }
+    }
+  }
+  .onTime {
+    color: #18790d;
+    font-weight: bold;
+  }
+
+  .delay {
+    color: #dc3545; // red text for delays
+    font-weight: bold;
+  }
+}

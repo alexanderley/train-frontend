@@ -12,7 +12,9 @@ export type Arrival = {
   platform: string;
 };
 
-export type TrainStation = {
-  id: string;
-  name: string;
-};
+export type TrainStation =
+  | {
+      id: string;
+      name: string;
+    }
+  | string;

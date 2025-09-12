@@ -1,12 +1,10 @@
 import { createContext, useState } from "react";
-
 import type { ReactNode } from "react";
-
 import type { TrainStation } from "../types/trainTypes";
 
 type TrainContextType = {
-  selectedStation: TrainStation | string | null;
-  setSelectedStation: (station: TrainStation | string | null) => void;
+  selectedStation: TrainStation | null;
+  setSelectedStation: (station: TrainStation | null) => void;
 };
 
 export const TrainContext = createContext<TrainContextType | undefined>(
@@ -14,9 +12,9 @@ export const TrainContext = createContext<TrainContextType | undefined>(
 );
 
 export const TrainProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedStation, setSelectedStation] = useState<
-    TrainStation | string | null
-  >(null);
+  const [selectedStation, setSelectedStation] = useState<TrainStation | null>(
+    null
+  );
 
   return (
     <TrainContext.Provider value={{ selectedStation, setSelectedStation }}>

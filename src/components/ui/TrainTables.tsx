@@ -35,7 +35,11 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
             <td>{train.platform}</td>
             <td>{train.line.productName}</td>
 
-            <td className={train.delay && train.delay > 0 ? styles.delay : ""}>
+            <td
+              className={
+                train.delay && train.delay > 0 ? styles.delay : styles.onTime
+              }
+            >
               {train.delay && train.delay > 0
                 ? `+${Math.floor(train.delay / 60)} min`
                 : "pünktlich"}

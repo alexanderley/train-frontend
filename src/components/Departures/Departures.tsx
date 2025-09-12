@@ -1,21 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import type { Arrival } from "../../types/trainTypes";
 import { fetchTrains } from "../../utils/trainFunctions";
 
 import TrainTables from "../ui/TrainTables";
+import { TrainContext } from "../../context/TrainContext";
 
 const Departures: React.FC = () => {
   const [departures, setDepartures] = useState<Arrival[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const trainContext = useContext(TrainContext);
+  if (!trainContext) {
+    throw new Error("Traincontext is not available");
+  }
+  const { selectedStation } = trainContext;
 
   useEffect(() => {
-    const fetchData = async () => {
-      const trains = await fetchTrains("departures");
-      setDepartures(trains || []);
-      setIsLoading(false);
-    };
-    fetchData();
-  }, []);
+    if (selectedStation) {
+      const fetchData = async () => {
+        const trains = await fetchTrains("departures", selectedStation.id);
+        setDepartures(trains || []);
+        setIsLoading(false);
+      };
+      fetchData();
+    }
+  }, [selectedStation]);
 
   return (
     <div>

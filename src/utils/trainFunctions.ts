@@ -5,7 +5,7 @@ type FetchType = "arrivals" | "departures";
 
 export const fetchTrains = async (
   type: FetchType,
-  stationId: string = "8002549"
+  stationId: string
 ): Promise<Arrival[]> => {
   try {
     const res = await fetch(`${API_URL}/api/${type}/${stationId}`);
