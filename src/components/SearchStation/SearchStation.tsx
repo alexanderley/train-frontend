@@ -38,7 +38,7 @@ export default function SearchStation() {
 
   return (
     <Autocomplete
-      style={{ width: 500 }}
+      fullWidth
       freeSolo
       options={stations}
       getOptionLabel={(option) =>

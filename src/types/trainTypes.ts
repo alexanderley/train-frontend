@@ -12,9 +12,9 @@ export type Arrival = {
   platform: string;
 };
 
-export type TrainStation =
-  | {
-      id: string;
-      name: string;
-    }
-  | string;
+// #Todo maybe change this later. Its a string when no matching station could be found
+
+export type TrainStation = {
+  id: string;
+  name: string;
+};

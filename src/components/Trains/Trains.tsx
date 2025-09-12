@@ -7,6 +7,10 @@ import SearchStation from "../SearchStation/SearchStation";
 const Trains: React.FC = () => {
   return (
     <div className={styles.trainWrapper}>
+      <h2>
+        Suche Nach Bahnhöfen <br />
+        Verbindungen
+      </h2>
       <SearchStation />
       <Arrivals />
       <Departures />

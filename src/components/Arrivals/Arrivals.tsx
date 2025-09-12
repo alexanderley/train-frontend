@@ -6,7 +6,7 @@ import { TrainContext } from "../../context/TrainContext";
 
 const Arrivals: React.FC = () => {
   const [arrivals, setArrivals] = useState<Arrival[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const trainContext = useContext(TrainContext);
 
   if (!trainContext) {

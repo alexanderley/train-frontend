@@ -7,7 +7,7 @@
   overflow: hidden;
 
   thead {
-    background-color: #dc3545; // red header
+    background-color: #dc3545;
     color: #fff;
     text-align: left;
 
@@ -22,7 +22,7 @@
       border-bottom: 1px solid #dee2e6;
 
       &:nth-child(even) {
-        background-color: #f1f3f5; // zebra striping
+        background-color: #f1f3f5;
       }
 
       &:hover {
@@ -41,7 +41,7 @@
   }
 
   .delay {
-    color: #dc3545; // red text for delays
+    color: #dc3545;
     font-weight: bold;
   }
 }

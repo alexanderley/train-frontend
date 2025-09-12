@@ -7,7 +7,7 @@ import { TrainContext } from "../../context/TrainContext";
 
 const Departures: React.FC = () => {
   const [departures, setDepartures] = useState<Arrival[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const trainContext = useContext(TrainContext);
   if (!trainContext) {
     throw new Error("Traincontext is not available");
