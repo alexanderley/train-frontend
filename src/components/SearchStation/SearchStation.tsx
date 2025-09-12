@@ -45,7 +45,11 @@ export default function SearchStation() {
         typeof option === "string" ? option : option.name
       }
       onChange={(_, value) => {
-        setSelectedStation(value);
+        if (typeof value === "string") {
+          setSelectedStation({ id: "", name: value });
+        } else {
+          setSelectedStation(value);
+        }
       }}
       onInputChange={handleInputChange}
       loading={loading}
