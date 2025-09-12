@@ -1,28 +1,25 @@
 import { Autocomplete, TextField, CircularProgress } from "@mui/material";
-import { useEffect, useState } from "react";
-
-type TrainStation = {
-  id: string;
-  name: string;
-};
+import { useEffect, useState, useContext } from "react";
+import { TrainContext } from "../../context/TrainContext";
+import type { TrainStation } from "../../types/trainTypes";
 
 export default function SearchStation() {
   const [stations, setStations] = useState<TrainStation[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selectedStation, setSelectedStation] = useState<
-    TrainStation | null | string
-  >(null);
+  const trainContext = useContext(TrainContext);
+  if (!trainContext) {
+    throw new Error("SearchStation must be used within a TrainProvider");
+  }
+  const { selectedStation, setSelectedStation } = trainContext;
 
   useEffect(() => {
-    console.log("selected Station: ", selectedStation);
-  });
+    console.log("selected: ", selectedStation);
+  }, [selectedStation]);
 
-  // alternative zu debouce
   const handleInputChange = async (_: any, value: string) => {
     if (!value || value.length < 2) {
       return setStations([]);
     }
-
     setLoading(true);
     try {
       const res = await fetch(

@@ -1,15 +1,12 @@
 import "./App.css";
 import Trains from "../src/components/Trains/Trains";
+import { TrainProvider } from "./context/TrainContext";
 
 function App() {
   return (
-    <>
-      <h2>
-        Finde Bahnhöfe <br />
-        und Anschlusszüge
-      </h2>
+    <TrainProvider>
       <Trains />
-    </>
+    </TrainProvider>
   );
 }
 

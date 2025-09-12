@@ -11,3 +11,8 @@ export type Arrival = {
   line: Line;
   platform: string;
 };
+
+export type TrainStation = {
+  id: string;
+  name: string;
+};
