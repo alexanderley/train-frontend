@@ -1,4 +1,4 @@
-# React Frontend for Vendo API
+# React Train Frontend for Vendo API
 
 This is the frontend for a train search application. You can search for train stations, get suggestions, and view real-time arrivals and departures. The app provides information about where trains are coming from, any delays, and which platform they will depart from.
 
