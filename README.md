@@ -2,12 +2,12 @@
 
 This is the frontend for a train search application. You can search for train stations, get suggestions, and view real-time arrivals and departures. The app provides information about where trains are coming from, any delays, and which platform they will depart from.
 
-## Technologies that habe been use
+## Technologies used
 
-- React + Typescript for builing components
-- SCSS from custom Styling, like tables and
-- MUI for prebuild suggestion component to search for Trainsations and set the input the the time span
-- Vite for setting up the whole application
+- React + Typescript for building components
+- SCSS for custom styling, like tables
+- MUI for prebuilt suggestion component to search for train stations and set the input time span
+- Vite has been used for setting up the whole application
 
 ## How to get started
 
@@ -16,10 +16,10 @@ This is the frontend for a train search application. You can search for train st
 - npm run dev
 - App should run on http://localhost:5173/
 
-Also makes shure that you have installed the backend wich serves the frontend with out train data.
+Also make sure that you have installed the backend which serves the frontend with our train data.
 
-You can find the the repo form the backend here: https://github.com/alexanderley/train-backend
+You can find the repo for the backend here: https://github.com/alexanderley/train-backend
 
 # Important!
 
-Make shure the Application runs on the exact port http://localhost:5173 otherwise there might be a CORS error from the backend.
+Make sure the application runs on the exact port http://localhost:5173 otherwise there might be a CORS error from the backend.
