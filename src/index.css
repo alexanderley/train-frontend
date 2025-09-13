@@ -7,6 +7,9 @@
   color: #213547; /* darker text for light bg */
   background-color: #ffffff; /* light background */
 
+  --red: #dc3545;
+  --green: #18790d;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

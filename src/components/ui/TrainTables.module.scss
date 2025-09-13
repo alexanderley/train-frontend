@@ -7,7 +7,7 @@
   overflow: hidden;
 
   thead {
-    background-color: #dc3545;
+    background-color: var(--red);
     color: #fff;
     text-align: left;
 
@@ -36,12 +36,12 @@
     }
   }
   .onTime {
-    color: #18790d;
+    color: var(--green);
     font-weight: bold;
   }
 
   .delay {
-    color: #dc3545;
+    color: var(--red);
     font-weight: bold;
   }
 }

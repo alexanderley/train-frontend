@@ -3,4 +3,19 @@
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  box-sizing: border-box;
+
+  .inputContainer {
+    display: flex;
+    gap: 10px;
+  }
+  @media screen and (max-width: 768px) {
+    .inputContainer {
+      flex-direction: column;
+    }
+  }
+
+  .searchButton {
+    background-color: var(--red);
+  }
 }

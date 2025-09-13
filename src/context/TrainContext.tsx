@@ -13,7 +13,7 @@ export const TrainContext = createContext<TrainContextType | undefined>(
 
 export const TrainProvider = ({ children }: { children: ReactNode }) => {
   const [selectedStation, setSelectedStation] = useState<TrainStation | null>(
-    null
+    {id: "", name:""}
   );
 
   return (

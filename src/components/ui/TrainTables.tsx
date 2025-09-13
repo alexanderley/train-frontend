@@ -13,7 +13,6 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
       <thead>
         <tr>
           <th>Zeit</th>
-
           {trainType === "arrival" ? <th>Von</th> : ""}
           <th>Zug/Linie</th>
           <th>Gleis</th>
