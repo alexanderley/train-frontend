@@ -36,8 +36,7 @@ const Trains: React.FC = () => {
   return (
     <div className={styles.trainWrapper}>
       <h2>
-        Suche Nach Bahnhöfen <br />
-        Verbindungen
+        Suche nach Bahnhöfen <br />& Verbindungen
       </h2>
       <form className={styles.inputContainer} onSubmit={handleSearch}>
         <SearchStation />
