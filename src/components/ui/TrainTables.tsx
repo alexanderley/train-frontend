@@ -30,7 +30,7 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
                 minute: "2-digit",
               })}
             </td>
-            <td style={{ minWidth: "65px" }}>
+            <td>
               {new Date(train.when).toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",

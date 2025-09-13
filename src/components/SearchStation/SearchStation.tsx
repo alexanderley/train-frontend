@@ -1,11 +1,7 @@
-import { Autocomplete, TextField, CircularProgress } from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 import { useEffect, useState, useContext } from "react";
 import { TrainContext } from "../../context/TrainContext";
 import type { TrainStation } from "../../types/trainTypes";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import InputAdornment from "@mui/material/InputAdornment";
 
 export default function SearchStation() {
   const [stations, setStations] = useState<TrainStation[]>([]);
@@ -59,23 +55,12 @@ export default function SearchStation() {
       loading={loading}
       renderInput={(params) => (
         <TextField
-          required
-          label="Suche nach Stationen"
           {...params}
+          label="Suche nach Stationen"
           variant="outlined"
-          InputProps={{
-            ...params.InputProps,
-            startAdornment: (
-              <InputAdornment position="start">
-                <FontAwesomeIcon icon={faSearch} />
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <>
-                {loading ? <CircularProgress size={20} /> : null}
-                {params.InputProps?.endAdornment}
-              </>
-            ),
+          required
+          slotProps={{
+            htmlInput: params.inputProps,
           }}
         />
       )}
