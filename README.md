@@ -15,7 +15,8 @@ This is the frontend for a train search application. You can search for train st
 - npm install
 - npm run dev
 - App should run on http://localhost:5173/
-- also makes shure that you have installed the backend wich serves the frontend with out train data.
+
+Also makes shure that you have installed the backend wich serves the frontend with out train data.
 
 You can find the the repo form the backend here: https://github.com/alexanderley/train-backend
 
