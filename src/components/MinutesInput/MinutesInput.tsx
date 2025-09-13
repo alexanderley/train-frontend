@@ -28,7 +28,8 @@ const MinutesInput: React.FC = () => {
     <div>
       <TextField
         fullWidth
-        label="Minuten"
+        label="In Minuten"
+        placeholder="Minuten"
         variant="outlined"
         size="medium"
         type="text"

@@ -12,7 +12,7 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
     <table className={styles.trainTable}>
       <thead>
         <tr>
-          <th>Ursprüngliche Zeit</th>
+          <th>Alte Zeit</th>
           <th>Neue Zeit</th>
           {trainType === "arrival" ? <th>Von</th> : ""}
           <th>Zug/Linie</th>
@@ -30,13 +30,17 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
                 minute: "2-digit",
               })}
             </td>
-            <td>
+            <td style={{ minWidth: "65px" }}>
               {new Date(train.when).toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
               })}
             </td>
-            {trainType === "arrival" ? <td>{train.provenance}</td> : ""}
+            {trainType === "arrival" ? (
+              <td style={{ maxWidth: "80px" }}>{train.provenance}</td>
+            ) : (
+              ""
+            )}
             <td>{train.line.name}</td>
             <td>{train.platform}</td>
             <td>{train.stop.transitAuthority}</td>

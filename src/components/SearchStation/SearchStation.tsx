@@ -3,6 +3,10 @@ import { useEffect, useState, useContext } from "react";
 import { TrainContext } from "../../context/TrainContext";
 import type { TrainStation } from "../../types/trainTypes";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import InputAdornment from "@mui/material/InputAdornment";
+
 export default function SearchStation() {
   const [stations, setStations] = useState<TrainStation[]>([]);
   const [loading, setLoading] = useState(false);
@@ -56,19 +60,22 @@ export default function SearchStation() {
       renderInput={(params) => (
         <TextField
           required
+          label="Suche nach Stationen"
           {...params}
-          placeholder="Suche nach Station"
           variant="outlined"
-          slotProps={{
-            input: {
-              ...params.InputProps,
-              endAdornment: (
-                <>
-                  {loading ? <CircularProgress size={20} /> : null}
-                  {params.InputProps?.endAdornment}
-                </>
-              ),
-            },
+          InputProps={{
+            ...params.InputProps,
+            startAdornment: (
+              <InputAdornment position="start">
+                <FontAwesomeIcon icon={faSearch} />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <>
+                {loading ? <CircularProgress size={20} /> : null}
+                {params.InputProps?.endAdornment}
+              </>
+            ),
           }}
         />
       )}
