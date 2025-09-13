@@ -36,6 +36,7 @@
       }
     }
   }
+
   .onTime {
     color: var(--green);
     font-weight: bold;
@@ -44,5 +45,15 @@
   .delay {
     color: var(--red);
     font-weight: bold;
+  }
+
+  @media screen and (max-width: 768px) {
+    .notOnMobile {
+      display: none;
+    }
+    .mobileMaxWidth {
+      max-width: 50px;
+      overflow: hidden;
+    }
   }
 }
