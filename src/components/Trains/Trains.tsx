@@ -17,7 +17,6 @@ const Trains: React.FC = () => {
         <MinutesInput />
         <button className={styles.searchButton}>Suchen</button>
       </div>
-
       <Arrivals />
       <Departures />
     </div>
