@@ -1,7 +1,8 @@
-import { Autocomplete, TextField } from "@mui/material";
 import { useState, useContext } from "react";
+import { Autocomplete, TextField } from "@mui/material";
 import { TrainContext } from "../../context/TrainContext";
 import type { TrainStation } from "../../types/trainTypes";
+import { fetchStations } from "../../utils/trainFunctions";
 
 export default function SearchStation() {
   const [stations, setStations] = useState<TrainStation[]>([]);
@@ -20,13 +21,8 @@ export default function SearchStation() {
     }
     setLoading(true);
     try {
-      const res = await fetch(
-        `http://localhost:5005/api/getStations?query=${encodeURIComponent(
-          value
-        )}`
-      );
-      const data = await res.json();
-      setStations(data.stations || []);
+      const stationsData = await fetchStations(value);
+      setStations(stationsData);
     } catch (err) {
       console.error("Error fetching stations:", err);
     } finally {
