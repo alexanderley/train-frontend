@@ -10,7 +10,7 @@ export type Stop = {
   transitAuthority: string;
 };
 
-export type Arrival = {
+export type Train = {
   provenance: string;
   when: string;
   plannedWhen: string;
@@ -18,6 +18,7 @@ export type Arrival = {
   line: Line;
   platform: string;
   stop: Stop;
+  direction: string;
 };
 
 export type TrainStation = {

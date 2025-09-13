@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./TrainTables.module.scss";
-import type { Arrival } from "../../types/trainTypes";
+import type { Train } from "../../types/trainTypes";
 
 type TrainTablesProps = {
-  trainData: Arrival[];
+  trainData: Train[];
   trainType: "arrival" | "departure";
 };
 
@@ -14,7 +14,7 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
         <tr>
           <th>Geplant</th>
           <th className={styles.notOnMobile}>Neue Zeit</th>
-          {trainType === "arrival" ? <th>Von</th> : ""}
+          {trainType === "arrival" ? <th>Von</th> : <th>Nach</th>}
           <th>Zug/Linie</th>
           <th>Gleis</th>
           <th className={styles.notOnMobile}>Betreiber</th>
@@ -45,7 +45,9 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
             {trainType === "arrival" ? (
               <td className={styles.mobileMaxWidth}>{train.provenance}</td>
             ) : (
-              ""
+              <td className={styles.mobileMaxWidth}>
+                {train.direction ? train.direction : "*keine Angabe"}
+              </td>
             )}
             <td>
               <strong>{train.line.name}</strong>

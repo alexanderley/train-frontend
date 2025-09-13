@@ -1,4 +1,4 @@
-import type { Arrival, TrainStation } from "../types/trainTypes";
+import type { Train, TrainStation } from "../types/trainTypes";
 import { API_URL } from "../apiRoutes";
 
 type FetchType = "arrivals" | "departures";
@@ -7,14 +7,14 @@ export const fetchTrains = async (
   type: FetchType,
   stationId: string,
   minutes?: number
-): Promise<Arrival[]> => {
+): Promise<Train[]> => {
   try {
     const res = await fetch(`${API_URL}/api/${type}/${stationId}`);
     const json = await res.json();
-    const allTrains: Arrival[] = json.data[type][type];
+    const allTrains: Train[] = json.data[type][type];
 
     // Filter only relevant products
-    let trainsOnly = allTrains.filter((t: Arrival) => {
+    let trainsOnly = allTrains.filter((t: Train) => {
       const product = t?.line?.product;
       return (
         product === "nationalExpress" || // ICE
@@ -26,7 +26,7 @@ export const fetchTrains = async (
 
     if (minutes !== undefined) {
       const now = new Date();
-      trainsOnly = trainsOnly.filter((t: Arrival) => {
+      trainsOnly = trainsOnly.filter((t: Train) => {
         if (!t.plannedWhen) return false;
         const plannedTime = new Date(t.plannedWhen);
         const diffMinutes = (plannedTime.getTime() - now.getTime()) / 60000;
@@ -50,9 +50,6 @@ export const fetchTrains = async (
 
 export const fetchStations = async (query: string): Promise<TrainStation[]> => {
   try {
-    // const res = await fetch(
-    //   `${API_URL}/api/getStations?query=${encodeURIComponent(query)}`
-    // );
     const res = await fetch(`${API_URL}/api/getStations/${query}`);
     const data = await res.json();
     return data.stations || [];

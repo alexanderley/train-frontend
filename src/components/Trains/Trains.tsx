@@ -6,7 +6,7 @@ import SearchStation from "../SearchStation/SearchStation";
 import MinutesInput from "../MinutesInput/MinutesInput";
 import { TrainContext } from "../../context/TrainContext";
 import { fetchTrains } from "../../utils/trainFunctions";
-import type { Arrival } from "../../types/trainTypes";
+import type { Train } from "../../types/trainTypes";
 
 const Trains: React.FC = () => {
   const trainContext = useContext(TrainContext);
@@ -14,8 +14,8 @@ const Trains: React.FC = () => {
 
   const { selectedStation, minutes } = trainContext;
 
-  const [departures, setDepartures] = useState<Arrival[]>([]);
-  const [arrivals, setArrivals] = useState<Arrival[]>([]);
+  const [departures, setDepartures] = useState<Train[]>([]);
+  const [arrivals, setArrivals] = useState<Train[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async (e: React.FormEvent) => {

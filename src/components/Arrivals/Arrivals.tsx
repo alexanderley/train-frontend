@@ -1,9 +1,9 @@
 import React from "react";
-import type { Arrival } from "../../types/trainTypes";
+import type { Train } from "../../types/trainTypes";
 import TrainTables from "../ui/TrainTables";
 
 interface ArrivalsProps {
-  trainData: Arrival[];
+  trainData: Train[];
   isLoading: boolean;
 }
 
