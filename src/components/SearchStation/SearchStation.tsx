@@ -55,6 +55,7 @@ export default function SearchStation() {
       loading={loading}
       renderInput={(params) => (
         <TextField
+          required
           {...params}
           placeholder="Suche nach Station"
           variant="outlined"

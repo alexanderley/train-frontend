@@ -1,24 +1,61 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Train.module.scss";
 import Arrivals from "../Arrivals/Arrivals";
 import Departures from "../Departures/Departures";
 import SearchStation from "../SearchStation/SearchStation";
 import MinutesInput from "../MinutesInput/MinutesInput";
+import { TrainContext } from "../../context/TrainContext";
+import { fetchTrains } from "../../utils/trainFunctions";
+import type { Arrival } from "../../types/trainTypes";
 
 const Trains: React.FC = () => {
+  const trainContext = useContext(TrainContext);
+  if (!trainContext) throw new Error("TrainContext not available");
+
+  const { selectedStation } = trainContext;
+
+  const [departures, setDepartures] = useState<Arrival[]>([]);
+  const [arrivals, setArrivals] = useState<Arrival[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (!selectedStation) return;
+    setIsLoading(true);
+
+    const [fetchedDepartures, fetchedArrivals] = await Promise.all([
+      fetchTrains("departures", selectedStation.id),
+      fetchTrains("arrivals", selectedStation.id),
+    ]);
+
+    setDepartures(fetchedDepartures || []);
+    setArrivals(fetchedArrivals || []);
+    setIsLoading(false);
+  };
+
   return (
     <div className={styles.trainWrapper}>
       <h2>
         Suche Nach Bahnhöfen <br />
         Verbindungen
       </h2>
-      <div className={styles.inputContainer}>
+      {/* <div className={styles.inputContainer}>
         <SearchStation />
         <MinutesInput />
-        <button className={styles.searchButton}>Suchen</button>
-      </div>
-      <Arrivals />
-      <Departures />
+        <button className={styles.searchButton} onClick={handleSearch}>
+          Suchen
+        </button>
+      </div> */}
+      <form className={styles.inputContainer} onSubmit={handleSearch}>
+        <SearchStation />
+        <MinutesInput />
+        <button className={styles.searchButton} type="submit">
+          Suchen
+        </button>
+      </form>
+
+      <Arrivals trainData={arrivals} isLoading={isLoading} />
+      <Departures trainData={departures} isLoading={isLoading} />
     </div>
   );
 };
