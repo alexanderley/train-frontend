@@ -50,9 +50,10 @@ export const fetchTrains = async (
 
 export const fetchStations = async (query: string): Promise<TrainStation[]> => {
   try {
-    const res = await fetch(
-      `${API_URL}/api/getStations?query=${encodeURIComponent(query)}`
-    );
+    // const res = await fetch(
+    //   `${API_URL}/api/getStations?query=${encodeURIComponent(query)}`
+    // );
+    const res = await fetch(`${API_URL}/api/getStations/${query}`);
     const data = await res.json();
     return data.stations || [];
   } catch (err) {
