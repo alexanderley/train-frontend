@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import TextField from "@mui/material/TextField";
 import { TrainContext } from "../../context/TrainContext";
 
@@ -10,10 +10,6 @@ const MinutesInput: React.FC = () => {
   }
 
   const { minutes, setMinutes } = context;
-
-  useEffect(() => {
-    console.log("train minutes", minutes);
-  }, [minutes]);
 
   const numberInputHandler = (numberInput: string) => {
     let num = numberInput.replace(/\D/g, "");

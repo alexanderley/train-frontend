@@ -47,6 +47,10 @@
     font-weight: bold;
   }
 
+  .minWidth {
+    min-width: 65px;
+  }
+
   @media screen and (max-width: 768px) {
     .notOnMobile {
       display: none;

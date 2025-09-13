@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import styles from "./Train.module.scss";
+import styles from "./Trains.module.scss";
 import Arrivals from "../Arrivals/Arrivals";
 import Departures from "../Departures/Departures";
 import SearchStation from "../SearchStation/SearchStation";
@@ -35,7 +35,7 @@ const Trains: React.FC = () => {
 
   return (
     <div className={styles.trainWrapper}>
-      <h2>
+      <h2 className={styles.appHeading}>
         Suche nach Bahnhöfen <br />& Verbindungen
       </h2>
       <form className={styles.inputContainer} onSubmit={handleSearch}>

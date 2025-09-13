@@ -11,7 +11,6 @@ const Arrivals: React.FC<ArrivalsProps> = ({ trainData, isLoading }) => {
   return (
     <div>
       <h2>Ankünfte</h2>
-
       {isLoading ? (
         <div className="spinner">
           <div className="loader"></div>

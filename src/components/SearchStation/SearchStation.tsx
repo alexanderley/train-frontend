@@ -1,5 +1,5 @@
 import { Autocomplete, TextField } from "@mui/material";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { TrainContext } from "../../context/TrainContext";
 import type { TrainStation } from "../../types/trainTypes";
 
@@ -7,14 +7,12 @@ export default function SearchStation() {
   const [stations, setStations] = useState<TrainStation[]>([]);
   const [loading, setLoading] = useState(false);
   const trainContext = useContext(TrainContext);
+
   if (!trainContext) {
     throw new Error("SearchStation must be used within a TrainProvider");
   }
-  const { selectedStation, setSelectedStation } = trainContext;
 
-  useEffect(() => {
-    console.log("selected: ", selectedStation);
-  }, [selectedStation]);
+  const { setSelectedStation } = trainContext;
 
   const handleInputChange = async (_: any, value: string) => {
     if (!value || value.length < 2) {
