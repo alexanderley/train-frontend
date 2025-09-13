@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./TrainTables.module.scss";
 import type { Train } from "../../types/trainTypes";
 
+import { formatDateTime } from "../../utils/formatFunctions";
+
 type TrainTablesProps = {
   trainData: Train[];
   trainType: "arrival" | "departure";
@@ -14,7 +16,7 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
         <tr>
           <th>Geplant</th>
           <th className={styles.notOnMobile}>Neue Zeit</th>
-          {trainType === "arrival" ? <th>Von</th> : <th>Nach</th>}
+          <th>{trainType === "arrival" ? "Von" : "Nach"}</th>
           <th>Zug/Linie</th>
           <th>Gleis</th>
           <th className={styles.notOnMobile}>Betreiber</th>
@@ -25,39 +27,30 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
         {trainData.map((train, i) => (
           <tr key={i}>
             <td className={styles.minWidth}>
-              {new Date(train.plannedWhen).toLocaleDateString("de-DE")} <br />
-              um{" "}
-              {new Date(train.plannedWhen).toLocaleTimeString("de-DE", {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}{" "}
-              Uhr
+              {formatDateTime(train.plannedWhen)}
             </td>
             <td className={`${styles.minWidth} ${styles.notOnMobile}`}>
-              {new Date(train.when).toLocaleDateString("de-DE")} <br />
-              um{" "}
-              {new Date(train.when).toLocaleTimeString("de-DE", {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}{" "}
-              Uhr
+              {formatDateTime(train.when)}
             </td>
-            {trainType === "arrival" ? (
-              <td className={styles.mobileMaxWidth}>{train.provenance}</td>
-            ) : (
-              <td className={styles.mobileMaxWidth}>
-                {train.direction ? train.direction : "*keine Angabe"}
-              </td>
-            )}
+
+            <td className={styles.mobileMaxWidth}>
+              {trainType === "arrival"
+                ? train.provenance ?? ""
+                : train.direction ?? "*keine Angabe"}
+            </td>
+
             <td>
-              <strong>{train.line.name}</strong>
+              <strong>{train.line?.name ?? ""}</strong>
             </td>
+
             <td>
-              <strong>{train.platform}</strong>
+              <strong>{train.platform ?? "-"}</strong>
             </td>
+
             <td className={styles.notOnMobile}>
-              {train.stop.transitAuthority}
+              {train.stop?.transitAuthority ?? ""}
             </td>
+
             <td
               className={
                 train.delay && train.delay > 0 ? styles.delay : styles.onTime
