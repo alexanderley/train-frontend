@@ -12,7 +12,8 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
     <table className={styles.trainTable}>
       <thead>
         <tr>
-          <th>Zeit</th>
+          <th>Ursprüngliche Zeit</th>
+          <th>Neue Zeit</th>
           {trainType === "arrival" ? <th>Von</th> : ""}
           <th>Zug/Linie</th>
           <th>Gleis</th>
@@ -24,6 +25,12 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
         {trainData.map((train, i) => (
           <tr key={i}>
             <td>
+              {new Date(train.plannedWhen).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </td>
+            <td>
               {new Date(train.when).toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
@@ -32,7 +39,7 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
             {trainType === "arrival" ? <td>{train.provenance}</td> : ""}
             <td>{train.line.name}</td>
             <td>{train.platform}</td>
-            <td>{train.line.productName}</td>
+            <td>{train.stop.transitAuthority}</td>
 
             <td
               className={

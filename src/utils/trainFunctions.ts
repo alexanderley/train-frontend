@@ -5,7 +5,8 @@ type FetchType = "arrivals" | "departures";
 
 export const fetchTrains = async (
   type: FetchType,
-  stationId: string
+  stationId: string,
+  minutes?: number
 ): Promise<Arrival[]> => {
   try {
     const res = await fetch(`${API_URL}/api/${type}/${stationId}`);
@@ -13,7 +14,8 @@ export const fetchTrains = async (
 
     const allTrains: Arrival[] = json.data[type][type];
 
-    const trainsOnly = allTrains.filter((t: Arrival) => {
+    // Filter only relevant products
+    let trainsOnly = allTrains.filter((t: Arrival) => {
       const product = t?.line?.product;
       return (
         product === "nationalExpress" || // ICE
@@ -22,6 +24,27 @@ export const fetchTrains = async (
         product === "regional" // RB/IRE
       );
     });
+
+    console.log("minutes: ", minutes);
+
+    if (minutes !== undefined) {
+      const now = new Date();
+      trainsOnly = trainsOnly.filter((t: Arrival) => {
+        if (!t.plannedWhen) return false;
+        const plannedTime = new Date(t.plannedWhen);
+        const diffMinutes = (plannedTime.getTime() - now.getTime()) / 60000;
+        return diffMinutes >= 0 && diffMinutes <= minutes;
+      });
+    }
+
+    // Sort by plannedWhen ascending
+    trainsOnly.sort((a, b) => {
+      const timeA = new Date(a.plannedWhen).getTime();
+      const timeB = new Date(b.plannedWhen).getTime();
+      return timeA - timeB;
+    });
+
+    console.log("trainssorted: ", trainsOnly);
 
     return trainsOnly || [];
   } catch (err) {

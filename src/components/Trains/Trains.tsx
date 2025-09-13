@@ -12,20 +12,20 @@ const Trains: React.FC = () => {
   const trainContext = useContext(TrainContext);
   if (!trainContext) throw new Error("TrainContext not available");
 
-  const { selectedStation } = trainContext;
+  const { selectedStation, minutes } = trainContext;
 
   const [departures, setDepartures] = useState<Arrival[]>([]);
   const [arrivals, setArrivals] = useState<Arrival[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = async (e) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedStation) return;
     setIsLoading(true);
 
     const [fetchedDepartures, fetchedArrivals] = await Promise.all([
-      fetchTrains("departures", selectedStation.id),
-      fetchTrains("arrivals", selectedStation.id),
+      fetchTrains("departures", selectedStation.id, minutes),
+      fetchTrains("arrivals", selectedStation.id, minutes),
     ]);
 
     setDepartures(fetchedDepartures || []);
@@ -39,13 +39,6 @@ const Trains: React.FC = () => {
         Suche Nach Bahnhöfen <br />
         Verbindungen
       </h2>
-      {/* <div className={styles.inputContainer}>
-        <SearchStation />
-        <MinutesInput />
-        <button className={styles.searchButton} onClick={handleSearch}>
-          Suchen
-        </button>
-      </div> */}
       <form className={styles.inputContainer} onSubmit={handleSearch}>
         <SearchStation />
         <MinutesInput />
