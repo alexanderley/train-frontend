@@ -25,24 +25,34 @@ const TrainTables: React.FC<TrainTablesProps> = ({ trainData, trainType }) => {
         {trainData.map((train, i) => (
           <tr key={i}>
             <td className={styles.minWidth}>
-              {new Date(train.plannedWhen).toLocaleTimeString([], {
+              {new Date(train.plannedWhen).toLocaleDateString("de-DE")} <br />
+              um{" "}
+              {new Date(train.plannedWhen).toLocaleTimeString("de-DE", {
                 hour: "2-digit",
                 minute: "2-digit",
-              })}
+              })}{" "}
+              Uhr
             </td>
-            <td className={`${styles.notOnMobile} ${styles.minWidth}`}>
-              {new Date(train.when).toLocaleTimeString([], {
+            <td className={`${styles.minWidth} ${styles.notOnMobile}`}>
+              {new Date(train.when).toLocaleDateString("de-DE")} <br />
+              um{" "}
+              {new Date(train.when).toLocaleTimeString("de-DE", {
                 hour: "2-digit",
                 minute: "2-digit",
-              })}
+              })}{" "}
+              Uhr
             </td>
             {trainType === "arrival" ? (
               <td className={styles.mobileMaxWidth}>{train.provenance}</td>
             ) : (
               ""
             )}
-            <td>{train.line.name}</td>
-            <td>{train.platform}</td>
+            <td>
+              <strong>{train.line.name}</strong>
+            </td>
+            <td>
+              <strong>{train.platform}</strong>
+            </td>
             <td className={styles.notOnMobile}>
               {train.stop.transitAuthority}
             </td>
