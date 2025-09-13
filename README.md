@@ -24,4 +24,4 @@ You can find the repo for the backend here: https://github.com/alexanderley/trai
 
 Make sure the application runs on the exact port http://localhost:5173 otherwise there might be a CORS error from the backend.
 
-![alt text](image.png)
+![alt text](image-1.png)
